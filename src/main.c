@@ -12,7 +12,11 @@ typedef struct pixel {
 } RGB;
 
 // Função para abrir a imagem.
-void openFile(char name[]) { 
+void openFile(char name[]) {
+  printf("Bem vindo\n");
+  printf("Digite o nome da sua imagem: \n");
+  scanf("%s", name);
+
   char imagePath[20] = {"img/"}; // Origem da Imagem.
   strcat(imagePath, name); // Junta o caminho com o nome da imagem.
   strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
@@ -44,6 +48,8 @@ RGB* readFileData(char imgType[], int *columns, int *rows, int *colorVar, int *p
 
 // Função que cria uma nova imagem.
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
+  printf("Digite o nome da sua nova imagem: \n");
+  scanf("%s", name);
   char imagePath[50] = {"img/"}; // Origem da Imagem.
   strcat(imagePath, name); // Junta o caminho com o nome da imagem.
   strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
@@ -76,12 +82,7 @@ int main() {
   int auxiliarToPixelQtd;
   int *pixelQtd = &auxiliarToPixelQtd; // Variável que armazena a quantidade de pixels da imagem.
 
-  printf("Bem vindo\n");
-  printf("Digite o nome da sua imagem: \n");
-  scanf("%s", name);
   openFile(name);
   RGB *pixelVector = readFileData(imgType, columns, rows, colorVar, pixelQtd);
-  printf("Digite o nome da sua nova imagem: \n");
-  scanf("%s", newName);
   createImg(newName, imgType, *columns, *rows, *colorVar, *pixelQtd, pixelVector);
 }

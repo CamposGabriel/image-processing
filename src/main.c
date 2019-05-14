@@ -67,7 +67,10 @@ int main() {
   char name[20]; // Vetor que armazena o nome do arquivo.
   char newName[20]; // Vetor que armazena o nome do novo arquivo.
   char imgType[3]; // Vetor que armazena o tipo da imagem.
-  int *columns, *rows; // Variáveis que armazenam o número de linhas e colunas da imagem.
+  int auxiliarToColumns; // Variável que armazena o número de colunas da imagem.
+  int auxiliarToRows; // Variável que armazena o número de linhas da imagem.
+  int *columns = &auxiliarToColumns; // Ponteiro que aponta para a variável que armazena o número de colunas da imagem.
+  int *rows = &auxiliarToRows; // Ponteiro que aponta para a variável que armazena o número de linhas da imagem.
   int auxiliarToColorVariation; // Variável que armazena a variação de cores da imagem.
   int *colorVar = &auxiliarToColorVariation; // Ponteiro que aponta para a variável que armazena a variação de cores.
   int auxiliarToPixelQtd;

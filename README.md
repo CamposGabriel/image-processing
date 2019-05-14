@@ -22,3 +22,7 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 ## Extras:
 
 ...
+
+## Breve demonstração do projeto (Momento atual): 
+
+![](program_demo.gif)

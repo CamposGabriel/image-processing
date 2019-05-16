@@ -8,7 +8,7 @@ SRC_DIR   = ./src
 
 CC     = gcc
 CFLAGS = -g
-LIBS   = -lm
+LIBS   = -lm -limg_process
 
 EXEC = $(EXEC_DIR)/$(EXEC_NAME)
 SRC = $(SRC_DIR)/$(code).c

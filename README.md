@@ -13,6 +13,10 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - 'amp’: Ampliará a imagem, de acordo com o zoom escolhido.
 - ‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.
 
+## Bibliotecas
+- Biblioteca "img_process.h" criada para auxiliar o projeto.
+
+
 ## Término do programa
 O programa encerrará caso ocorra uma das três seguintes situações:
 - A segmentação foi feita completamente.

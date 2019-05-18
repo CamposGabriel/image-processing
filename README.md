@@ -28,10 +28,10 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 
 ## Extras:
 
-## Bibliotecas
+### Bibliotecas
 - Biblioteca "img_process.h" criada para auxiliar o projeto.
 
-## Comandos:
+### Comandos:
 - Função "actions": Direciona o usuário para a função que faz a alteração desejada.
 
 ## Breve demonstração do projeto (Momento atual): 

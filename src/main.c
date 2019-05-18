@@ -3,6 +3,7 @@
 #include <string.h>
 #include "img_process.h"
 
+
 // Função principal.
 int main() {
   char name[20]; // Vetor que armazena o nome do arquivo.
@@ -19,5 +20,5 @@ int main() {
 
   openFile(name); // Abrindo o arquivo
   RGB *pixelVector = readFileData(imgType, columVal, rowVal, colorVarVal, pixelQtdVal); // Lendo os dados e definindo o vetor de pixels.
-  createImg(newName, imgType, columns, rows, colorVar, pixelQtd, pixelVector); // Salvando as alterações e criando um novo arquivo.
+  actions(name, newName, imgType, columns, rows, colorVar, colorVarVal, pixelQtd, pixelVector); // Selecionando a alteração desejada pelo usuário.
 }

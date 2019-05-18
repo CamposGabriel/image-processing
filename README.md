@@ -19,9 +19,6 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - Blurring é o embaçamento da imagem.
 - Sharpening é o realçamento das bordas e detalhes de uma imagem.
 
-## Bibliotecas
-- Biblioteca "img_process.h" criada para auxiliar o projeto.
-
 
 ## Término do programa
 O programa encerrará caso ocorra uma das três seguintes situações:
@@ -31,7 +28,11 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 
 ## Extras:
 
-...
+## Bibliotecas
+- Biblioteca "img_process.h" criada para auxiliar o projeto.
+
+## Comandos:
+- Função "actions": Direciona o usuário para a função que faz a alteração desejada.
 
 ## Breve demonstração do projeto (Momento atual): 
 

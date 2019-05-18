@@ -13,6 +13,12 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - 'amp’: Ampliará a imagem, de acordo com o zoom escolhido.
 - ‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.
 
+
+### Detalhamento de alguns comandos:
+- Thresholding é um método de substituição de cada pixel de uma imagem por um pixel preto se a itensidade for menor do que uma constante T fixada ou um pixel branco se for maior do que a constante.
+- Blurring é o embaçamento da imagem.
+- Sharpening é o realçamento das bordas e detalhes de uma imagem.
+
 ## Bibliotecas
 - Biblioteca "img_process.h" criada para auxiliar o projeto.
 

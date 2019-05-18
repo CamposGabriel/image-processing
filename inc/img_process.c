@@ -39,6 +39,20 @@ RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal,
   return pixelVector;
 }
 
+void thr(int *pixelQtdVal, RGB pixelVector[]) {
+  for (int i = 0; i < *pixelQtdVal; i++) {
+    if (pixelVector[i].red < 165 && pixelVector[i].green < 165 && pixelVector[i].blue < 165) {
+      pixelVector[i].red = 0;
+      pixelVector[i].green = 0;
+      pixelVector[i].blue = 0;
+    } else {
+      pixelVector[i].red = 255;
+      pixelVector[i].green = 255;
+      pixelVector[i].blue = 255;
+    }
+  }
+}
+
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
   printf("Digite o nome da sua nova imagem: \n");
   scanf("%s", name);

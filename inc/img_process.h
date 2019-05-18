@@ -19,4 +19,7 @@ void thr(int *pixelQtdVal, RGB pixelVector[]);
 // Cria um novo arquivo de imagem localizado dentro da pasta "img" com as alterações feitas.
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]);
 
+// Seleciona qual alteração será feita na imagem através de um input do usuário.
+void actions(char name[], char newName[], char imgType[], int columns, int rows, int colorVar, int *colorVarVal, int pixelQtd, RGB pixelVector[]);
+
 #endif

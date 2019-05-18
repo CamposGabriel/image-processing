@@ -73,3 +73,33 @@ void createImg(char name[], char imgType[], int columns, int rows, int colorVar,
   fclose(newFile);
   free(pixelVector);
 }
+
+void actions(char name[], char newName[], char imgType[], int columns, int rows, int colorVar, int *colorVarVal, int pixelQtd, RGB pixelVector[]) {
+  char answer1[1];
+  char answer2[4];
+  
+  printf("Deseja fazer alguma alteração na imagem selecionada? [S]/[N]\n");
+  scanf("%s", answer1);
+  
+  if (answer1[0] == 's') {
+    printf("Lista de comandos:\n");
+    printf("'thr': Fará a binarização da imagem usando thresholding.\n‘blu’: Executará o blurring.\n‘sha’: Executará o sharpening.\n'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.\n'amp’: Ampliará a imagem, de acordo com o zoom escolhido.\n‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.\nDigite a alteração que deseja executar: ");
+    scanf("%s", answer2);
+    if(answer2[0] == 't') {
+      thr(&pixelQtd, pixelVector);
+    } else if (answer2[0] == 'b') {
+      //blu();
+    } else if (answer2[0] == 's') {
+      //sha();
+    } else if (answer2[0] == 'r' && answer2[1] == 'o') {
+      //rot();
+    } else if (answer2[0] == 'a') {
+      //amp();
+    } else if (answer2[0] == 'r' && answer2[1] == 'e') {
+      //red();
+    }
+    createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector); // Salvando as alterações e criando um novo arquivo.
+  } else {
+    createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector); // Salvando as alterações e criando um novo arquivo.
+  }
+}

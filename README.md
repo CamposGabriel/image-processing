@@ -1,5 +1,5 @@
-# Processamento de imagem usando a lingugem C
-Esse é um programa desenvolvido para a disciplina de Introdução às Tecnicas de Programação.
+# Processamento de imagem usando a linguagem C
+Esse é um programa desenvolvido para a disciplina de Introdução as Técnicas de Programação.
 
 ## Sobre o programa
 O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais operações de transformação na imagem, de acordo com o que o usuário escolher.
@@ -9,7 +9,7 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - 'thr': Fará a binarização da imagem usando thresholding.
 - ‘blu’: Executará o blurring.
 - ‘sha’: Executará o sharpening.
-- 'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.
+- 'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.
 - 'amp’: Ampliará a imagem, de acordo com o zoom escolhido.
 - ‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.
 

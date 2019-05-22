@@ -16,6 +16,12 @@ RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal,
 // Realiza a binarização da imagem utilizando a técnica threshold.
 void thr(int *pixelQtdVal, RGB pixelVector[]);
 
+// Realiza o borramento da imagem.
+void blu(int *pixelQtdVal, RGB pixelVector[]);
+
+// Realiza o afiamento das bordas da imagem.
+void sha(int *pixelQtdVal, RGB pixelVector[], int columns);
+
 // Cria um novo arquivo de imagem localizado dentro da pasta "img" com as alterações feitas.
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]);
 

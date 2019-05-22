@@ -23,7 +23,12 @@ void openFile(char name[]) {
 }
 
 RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal, int *pixelQtdVal) {
+  char test[2];
   fscanf(file, "%s", imgType);
+  fgets(test, 1, file);
+  if(test[0] == '#') {
+    fscanf(file, "%i %i", columnVal, rowVal);
+  }
   fscanf(file, "%i %i", columnVal, rowVal);
   fscanf(file, "%i", colorVarVal);
 
@@ -49,6 +54,38 @@ void thr(int *pixelQtdVal, RGB pixelVector[]) {
       pixelVector[i].red = 255;
       pixelVector[i].green = 255;
       pixelVector[i].blue = 255;
+    }
+  }
+}
+
+void blu(int *pixelQtdVal, RGB pixelVector[]) {
+  for (int i = 0; i < *pixelQtdVal; i++) {
+    pixelVector[i].red = (pixelVector[i].red + pixelVector[i+1].red + pixelVector[i+2].red + pixelVector[i+3].red + pixelVector[i+4].red + pixelVector[i+5].red) / 6;
+    pixelVector[i].green = (pixelVector[i].green + pixelVector[i+1].green + pixelVector[i+2].green + pixelVector[i+3].green + pixelVector[i+4].green + pixelVector[i+5].green) / 6;
+    pixelVector[i].blue = (pixelVector[i].blue + pixelVector[i+1].blue + pixelVector[i+2].blue + pixelVector[i+3].blue + pixelVector[i+4].blue + pixelVector[i+5].blue) / 6;
+  }
+}
+
+void sha(int *pixelQtdVal, RGB pixelVector[], int columns) {
+  for (int i = 0; i < *pixelQtdVal; i++) {
+    pixelVector[i].red = (pixelVector[i].red * 0) + (pixelVector[i+1].red * -1) + (pixelVector[i+2].red * 0) + (pixelVector[i+3].red * -1) + (pixelVector[i+4].red * 5) + (pixelVector[i+5].red * -1) + (pixelVector[i+6].red * 0) + (pixelVector[i+7].red * -1) + (pixelVector[i+8].red * 0);
+    pixelVector[i].green = (pixelVector[i].green * 0) + (pixelVector[i+1].green * -1) + (pixelVector[i+2].green * 0) + (pixelVector[i+3].green * -1) + (pixelVector[i+4].green * 5) + (pixelVector[i+5].green * -1) + (pixelVector[i+6].green * 0) + (pixelVector[i+7].green * -1) + (pixelVector[i+8].green * 0);
+    pixelVector[i].blue = (pixelVector[i].blue * 0) + (pixelVector[i+1].blue * -1) + (pixelVector[i+2].blue * 0) + (pixelVector[i+3].blue * -1) + (pixelVector[i+4].blue * 5) + (pixelVector[i+5].blue * -1) + (pixelVector[i+6].blue * 0) + (pixelVector[i+7].blue * -1) + (pixelVector[i+8].blue * 0);
+
+    if (pixelVector[i].red > 255) {
+      pixelVector[i].red = 255;
+    } else if (pixelVector[i].red < 0) {
+      pixelVector[i].red = 0;
+    }
+    if (pixelVector[i].green > 255) {
+      pixelVector[i].green = 255;
+    } else if (pixelVector[i].green < 0) {
+      pixelVector[i].green = 0;
+    }
+    if (pixelVector[i].blue > 255) {
+      pixelVector[i].blue = 255;
+    } else if (pixelVector[i].blue < 0) {
+      pixelVector[i].blue = 0;
     }
   }
 }
@@ -87,10 +124,13 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
     scanf("%s", answer2);
     if(answer2[0] == 't') {
       thr(&pixelQtd, pixelVector);
+      createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'b') {
-      //blu();
+      blu(&pixelQtd, pixelVector);
+      createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 's') {
-      //sha();
+      sha(&pixelQtd, pixelVector, columns);
+      createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'r' && answer2[1] == 'o') {
       //rot();
     } else if (answer2[0] == 'a') {
@@ -98,7 +138,6 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
     } else if (answer2[0] == 'r' && answer2[1] == 'e') {
       //red();
     }
-    createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector); // Salvando as alterações e criando um novo arquivo.
   } else {
     createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector); // Salvando as alterações e criando um novo arquivo.
   }

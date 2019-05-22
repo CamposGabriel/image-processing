@@ -7,8 +7,8 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 ## Comandos
 ### Os comandos (da linha de comando) serão:
 - 'thr': Fará a binarização da imagem usando thresholding.
-- ‘blu’: Executará o blurring.
-- ‘sha’: Executará o sharpening.
+- ‘blu’: Executará o borramento da imagem.
+- ‘sha’: Aumentará a nitidez da imagem.
 - 'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.
 - 'amp’: Ampliará a imagem, de acordo com o zoom escolhido.
 - ‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.
@@ -34,6 +34,14 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 ### Comandos:
 - Função "actions": Direciona o usuário para a função que faz a alteração desejada.
 
-## Breve demonstração do projeto (Momento atual): 
+## Demonstração do projeto: 
 
-![](program_demo.gif)
+### Binarização da imagem:
+![Binarização](ex/gifs/thr.gif)
+
+### Borramento da imagem:
+![Borramento](ex/gifs/blu.gif)
+
+### Aumento da nitidez da imagem:
+![Nitidez](ex/gifs/sha.gif)
+

@@ -20,7 +20,7 @@ void thr(int *pixelQtdVal, RGB pixelVector[]);
 void blu(int *pixelQtdVal, RGB pixelVector[]);
 
 // Realiza o afiamento das bordas da imagem.
-void sha(int *pixelQtdVal, RGB pixelVector[], int columns);
+void sha(int *pixelQtdVal, RGB pixelVector[]);
 
 // Cria um novo arquivo de imagem localizado dentro da pasta "img" com as alterações feitas.
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]);

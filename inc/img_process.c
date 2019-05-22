@@ -66,7 +66,7 @@ void blu(int *pixelQtdVal, RGB pixelVector[]) {
   }
 }
 
-void sha(int *pixelQtdVal, RGB pixelVector[], int columns) {
+void sha(int *pixelQtdVal, RGB pixelVector[]) {
   for (int i = 0; i < *pixelQtdVal; i++) {
     pixelVector[i].red = (pixelVector[i].red * 0) + (pixelVector[i+1].red * -1) + (pixelVector[i+2].red * 0) + (pixelVector[i+3].red * -1) + (pixelVector[i+4].red * 5) + (pixelVector[i+5].red * -1) + (pixelVector[i+6].red * 0) + (pixelVector[i+7].red * -1) + (pixelVector[i+8].red * 0);
     pixelVector[i].green = (pixelVector[i].green * 0) + (pixelVector[i+1].green * -1) + (pixelVector[i+2].green * 0) + (pixelVector[i+3].green * -1) + (pixelVector[i+4].green * 5) + (pixelVector[i+5].green * -1) + (pixelVector[i+6].green * 0) + (pixelVector[i+7].green * -1) + (pixelVector[i+8].green * 0);
@@ -129,7 +129,7 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
       blu(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 's') {
-      sha(&pixelQtd, pixelVector, columns);
+      sha(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'r' && answer2[1] == 'o') {
       //rot();

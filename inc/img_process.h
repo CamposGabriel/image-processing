@@ -16,6 +16,9 @@ RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal,
 // Realiza a binarização da imagem utilizando a técnica threshold.
 void thr(int *pixelQtdVal, RGB pixelVector[]);
 
+// Transforma a imagem em uma escala de cinza.
+void gsc(int *pixelQtdVal, RGB pixelVector[]);
+
 // Realiza o borramento da imagem.
 void blu(int *pixelQtdVal, RGB pixelVector[]);
 

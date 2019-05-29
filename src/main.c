@@ -1,5 +1,4 @@
 #include "img_process.h"
-#include <stdio.h>
 
 
 // Função principal.

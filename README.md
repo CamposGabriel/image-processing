@@ -45,3 +45,5 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 ### Aumento da nitidez da imagem:
 ![Nitidez](ex/gifs/sha.gif)
 
+### Aumento do tamanho da imagem:
+![Amp](ex/amp_2.png)

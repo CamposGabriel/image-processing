@@ -4,13 +4,22 @@ Esse é um programa desenvolvido para a disciplina de Introdução as Técnicas 
 ## Sobre o programa
 O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais operações de transformação na imagem, de acordo com o que o usuário escolher.
 
-## Comandos
+## Sumário:
+- [Comandos](https://github.com/CamposGabriel/image-processing#os-comandos-da-linha-de-comando-serão)
+- [Término do programa](https://github.com/CamposGabriel/image-processing#Término-do-programa)
+- [Extras](https://github.com/CamposGabriel/image-processing#Extras)
+- [Binarização da Imagem](https://github.com/CamposGabriel/image-processing#binarização-da-imagem)
+- [Escala de Cinza](https://github.com/CamposGabriel/image-processing#Escala-de-cinza)
+- [Borramento da Imagem](https://github.com/CamposGabriel/image-processing#borramento-da-imagem)
+- [Aumento da nitidez da imagem](https://github.com/CamposGabriel/image-processing#aumento-da-nitidez-da-imagem)
+- [Aumento do tamanho da imagem](https://github.com/CamposGabriel/image-processing#aumento-do-tamanho-da-imagem)
+
 
 ### OBS:
 - Antes de iniciar o programa, certifique-se de que a memória stack está como ilimitada usando o comando:
 - ulimit -s unlimited
 
-### Os comandos (da linha de comando) serão:
+## Os comandos (da linha de comando) serão:
 - 'thr': Fará a binarização da imagem usando thresholding.
 - 'gsc': Transformará a imagem em escala de cinza.
 - ‘blu’: Executará o borramento da imagem.
@@ -26,7 +35,7 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - Sharpening é o realçamento das bordas e detalhes de uma imagem.
 
 
-## Término do programa
+## Término do programa:
 O programa encerrará caso ocorra uma das três seguintes situações:
 - A segmentação foi feita completamente.
 - Aconteceu um erro na segmentação da imagem.

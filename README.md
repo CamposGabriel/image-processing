@@ -45,6 +45,9 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 ### Binarização da imagem:
 ![Binarização](ex/gifs/thr.gif)
 
+### Escala de cinza:
+![Escala_de_Cinza](ex/gifs/gsc.gif)
+
 ### Borramento da imagem:
 ![Borramento](ex/gifs/blu.gif)
 

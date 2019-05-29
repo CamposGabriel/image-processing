@@ -9,6 +9,7 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - [Término do programa](https://github.com/CamposGabriel/image-processing#Término-do-programa)
 - [Extras](https://github.com/CamposGabriel/image-processing#Extras)
 - [Binarização da Imagem](https://github.com/CamposGabriel/image-processing#binarização-da-imagem)
+### Exemplos:
 - [Escala de Cinza](https://github.com/CamposGabriel/image-processing#Escala-de-cinza)
 - [Borramento da Imagem](https://github.com/CamposGabriel/image-processing#borramento-da-imagem)
 - [Aumento da nitidez da imagem](https://github.com/CamposGabriel/image-processing#aumento-da-nitidez-da-imagem)

@@ -12,6 +12,7 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 
 ### Os comandos (da linha de comando) serão:
 - 'thr': Fará a binarização da imagem usando thresholding.
+- 'gsc': Transformará a imagem em escala de cinza.
 - ‘blu’: Executará o borramento da imagem.
 - ‘sha’: Aumentará a nitidez da imagem.
 - 'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.

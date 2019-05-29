@@ -5,6 +5,11 @@ Esse é um programa desenvolvido para a disciplina de Introdução as Técnicas 
 O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais operações de transformação na imagem, de acordo com o que o usuário escolher.
 
 ## Comandos
+
+### OBS:
+- Antes de iniciar o programa, certifique-se de que a memória stack está como ilimitada usando o comando:
+- ulimit -s unlimited
+
 ### Os comandos (da linha de comando) serão:
 - 'thr': Fará a binarização da imagem usando thresholding.
 - ‘blu’: Executará o borramento da imagem.

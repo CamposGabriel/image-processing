@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/resource.h>
 
 FILE * file;
 FILE * newFile;
@@ -23,12 +24,7 @@ void openFile(char name[]) {
 }
 
 RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal, int *pixelQtdVal) {
-  char test[2];
   fscanf(file, "%s", imgType);
-  fgets(test, 1, file);
-  if(test[0] == '#') {
-    fscanf(file, "%i %i", columnVal, rowVal);
-  }
   fscanf(file, "%i %i", columnVal, rowVal);
   fscanf(file, "%i", colorVarVal);
 
@@ -90,6 +86,55 @@ void sha(int *pixelQtdVal, RGB pixelVector[]) {
   }
 }
 
+void amp(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
+  const rlim_t kStackSize = 16 * 1024 * 1024;   // min stack size = 16 MB
+  struct rlimit rl;
+  int result;
+
+  result = getrlimit(RLIMIT_STACK, &rl);
+  if (result == 0) {
+    if (rl.rlim_cur < kStackSize) {
+      rl.rlim_cur = kStackSize;
+      result = setrlimit(RLIMIT_STACK, &rl);
+      if (result != 0) {
+        fprintf(stderr, "setrlimit returned result = %d\n", result);
+      }
+    }
+  }
+
+  printf("Digite o nome da sua nova imagem: \n");
+  scanf("%s", name);
+  char imagePath[50] = {"img/"}; // Origem da Imagem.
+  strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+  strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+  newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+  
+  fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+  fprintf(newFile, "%i %i\n", 2*columns, 2*rows);
+  fprintf(newFile, "%i\n", colorVar);
+
+  RGB pixelMatrix[rows*2][columns*2];
+
+  for (int i = 0; i < rows; i++) {
+    for(int j = 0; j < columns; j++) {
+      RGB pixel = pixelVector[i * columns + j];
+      pixelMatrix[(i*2)][(j*2)] = pixel;
+      pixelMatrix[(i*2)][(j*2)+1] = pixel;
+      pixelMatrix[(i*2)+1][(j*2)] = pixel;
+      pixelMatrix[(i*2)+1][(j*2)+1] = pixel;
+    }
+  }
+  for (int i = 0; i < rows*2; i++) {    
+    for(int j = 0; j < columns*2; j++) {
+      fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
+      fprintf(newFile, "%i\n", pixelMatrix[i][j].green);
+      fprintf(newFile, "%i\n", pixelMatrix[i][j].blue);
+    }
+  }
+  fclose(newFile);
+  free(pixelVector);
+}
+
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
   printf("Digite o nome da sua nova imagem: \n");
   scanf("%s", name);
@@ -134,7 +179,7 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
     } else if (answer2[0] == 'r' && answer2[1] == 'o') {
       //rot();
     } else if (answer2[0] == 'a') {
-      //amp();
+      amp(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'r' && answer2[1] == 'e') {
       //red();
     }

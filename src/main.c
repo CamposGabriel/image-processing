@@ -1,4 +1,6 @@
 #include "img_process.h"
+#include <stdio.h>
+
 
 // Função principal.
 int main() {
@@ -13,7 +15,7 @@ int main() {
   int *rowVal = &rows; // Ponteiro para o número de linhas.
   int *colorVarVal = &colorVar; // Ponteiro para a variação de cores.
   int *pixelQtdVal = &pixelQtd; // Ponteiro para a quantidade de pixels.
-
+  
   openFile(name); // Abrindo o arquivo
   RGB *pixelVector = readFileData(imgType, columVal, rowVal, colorVarVal, pixelQtdVal); // Lendo os dados e definindo o vetor de pixels.
   actions(name, newName, imgType, columns, rows, colorVar, colorVarVal, pixelQtd, pixelVector); // Selecionando a alteração desejada pelo usuário.

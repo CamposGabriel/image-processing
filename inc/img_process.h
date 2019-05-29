@@ -22,6 +22,9 @@ void blu(int *pixelQtdVal, RGB pixelVector[]);
 // Realiza o afiamento das bordas da imagem.
 void sha(int *pixelQtdVal, RGB pixelVector[]);
 
+// Amplia a imagem.
+void amp(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]);
+
 // Cria um novo arquivo de imagem localizado dentro da pasta "img" com as alterações feitas.
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]);
 

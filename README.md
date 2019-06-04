@@ -13,7 +13,10 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - [Escala de Cinza](https://github.com/CamposGabriel/image-processing#Escala-de-cinza)
 - [Borramento da Imagem](https://github.com/CamposGabriel/image-processing#borramento-da-imagem)
 - [Aumento da nitidez da imagem](https://github.com/CamposGabriel/image-processing#aumento-da-nitidez-da-imagem)
+- [Detecção das bordas](https://github.com/CamposGabriel/image-processing#Detecção-das-bordas-da-imagem)
 - [Aumento do tamanho da imagem](https://github.com/CamposGabriel/image-processing#aumento-do-tamanho-da-imagem)
+- [Rotação da imagem](https://github.com/CamposGabriel/image-processing#Rotação-da-imagem)
+- [Redução da imagem](https://github.com/CamposGabriel/image-processing#Redução-da-imagem)
 
 
 ### OBS:
@@ -25,6 +28,7 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - 'gsc': Transformará a imagem em escala de cinza.
 - ‘blu’: Executará o borramento da imagem.
 - ‘sha’: Aumentará a nitidez da imagem.
+- 'bdt': Fará a detecção das bordas da imagem.
 - 'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.
 - 'amp’: Ampliará a imagem, de acordo com o zoom escolhido.
 - ‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.
@@ -64,5 +68,11 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 ### Aumento da nitidez da imagem:
 ![Nitidez](ex/gifs/sha.gif)
 
+### Detecção das bordas da imagem:
+
 ### Aumento do tamanho da imagem:
 ![Amp](ex/amp_2.png)
+
+### Rotação da imagem:
+
+### Redução da imagem:

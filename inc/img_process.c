@@ -93,6 +93,30 @@ void sha(int *pixelQtdVal, RGB pixelVector[]) {
   }
 }
 
+void bdt(int *pixelQtdVal, RGB pixelVector[]) {
+  for (int i = 0; i < *pixelQtdVal; i++) {
+    pixelVector[i].red = (pixelVector[i].red * -1) + (pixelVector[i+1].red * -1) + (pixelVector[i+2].red * -1) + (pixelVector[i+3].red * -1) + (pixelVector[i+4].red * 8) + (pixelVector[i+5].red * -1) + (pixelVector[i+6].red * -1) + (pixelVector[i+7].red * -1) + (pixelVector[i+8].red * -1);
+    pixelVector[i].green = (pixelVector[i].green * -1) + (pixelVector[i+1].green * -1) + (pixelVector[i+2].green * -1) + (pixelVector[i+3].green * -1) + (pixelVector[i+4].green * 8) + (pixelVector[i+5].green * -1) + (pixelVector[i+6].green * -1) + (pixelVector[i+7].green * -1) + (pixelVector[i+8].green * -1);
+    pixelVector[i].blue = (pixelVector[i].blue * -1) + (pixelVector[i+1].blue * -1) + (pixelVector[i+2].blue * -1) + (pixelVector[i+3].blue * -1) + (pixelVector[i+4].blue * 8) + (pixelVector[i+5].blue * -1) + (pixelVector[i+6].blue * -1) + (pixelVector[i+7].blue * -1) + (pixelVector[i+8].blue * -1);
+
+    if (pixelVector[i].red > 255) {
+      pixelVector[i].red = 255;
+    } else if (pixelVector[i].red < 0) {
+      pixelVector[i].red = 0;
+    }
+    if (pixelVector[i].green > 255) {
+      pixelVector[i].green = 255;
+    } else if (pixelVector[i].green < 0) {
+      pixelVector[i].green = 0;
+    }
+    if (pixelVector[i].blue > 255) {
+      pixelVector[i].blue = 255;
+    } else if (pixelVector[i].blue < 0) {
+      pixelVector[i].blue = 0;
+    }
+  }
+}
+
 void amp(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
   int zoomQtd;
   printf("Digite a quantidade do zoom desejado (2, 4 ou 8 vezes): ");
@@ -270,6 +294,317 @@ void amp(char name[], char imgType[], int columns, int rows, int colorVar, int p
   free(pixelVector);
 }
 
+void red(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
+  int zoomQtd;
+  printf("Digite a quantidade do zoom desejado (2, 4 ou 8 vezes): ");
+  scanf("%i", &zoomQtd);
+
+  if (zoomQtd == 2) {
+    printf("Digite o nome da sua nova imagem: \n");
+    scanf("%s", name);
+    char imagePath[50] = {"img/"}; // Origem da Imagem.
+    strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+    strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+    newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+
+    fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+    fprintf(newFile, "%i %i\n", columns / 2, rows / 2);
+    fprintf(newFile, "%i\n", colorVar);
+
+    RGB pixelMatrix[rows*2][columns*2];
+    RGB pixelMatrixRedux[rows][columns];
+
+    for (int i = 0; i < rows; i++) {
+      for(int j = 0; j < columns; j++) {
+        RGB pixel = pixelVector[i * columns + j];
+        pixelMatrix[(i*2)][(j*2)] = pixel;
+        pixelMatrix[(i*2)][(j*2)+1] = pixel;
+        pixelMatrix[(i*2)+1][(j*2)] = pixel;
+        pixelMatrix[(i*2)+1][(j*2)+1] = pixel;
+      }
+    }
+
+    for (int i = 0; i < rows/2; i++) {
+      for(int j = 0; j < columns/2; j++) {
+        pixelMatrixRedux[i][j] = pixelMatrix[i*4][j*4];
+      }
+    }
+
+    for (int i = 0; i < rows/2; i++) {    
+      for(int j = 0; j < columns/2; j++) {
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].red);
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].green);
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].blue);
+      }
+    }
+
+  } else if (zoomQtd == 4) {
+    
+    printf("Digite o nome da sua nova imagem: \n");
+    scanf("%s", name);
+    char imagePath[50] = {"img/"}; // Origem da Imagem.
+    strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+    strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+    newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+
+    fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+    fprintf(newFile, "%i %i\n", columns / 4, rows / 4);
+    fprintf(newFile, "%i\n", colorVar);
+
+    RGB pixelMatrix[rows*4][columns*4];
+    RGB pixelMatrixRedux[rows][columns];
+
+    for (int i = 0; i < rows; i++) {
+      for(int j = 0; j < columns; j++) {
+        RGB pixel = pixelVector[i * columns + j];
+        pixelMatrix[(i*4)][(j*4)] = pixel;
+        pixelMatrix[(i*4)][(j*4)+1] = pixel;
+        pixelMatrix[(i*4)][(j*4)+2] = pixel;
+        pixelMatrix[(i*4)][(j*4)+3] = pixel;
+        pixelMatrix[(i*4)+1][(j*4)] = pixel;
+        pixelMatrix[(i*4)+1][(j*4)+1] = pixel;
+        pixelMatrix[(i*4)+1][(j*4)+2] = pixel;
+        pixelMatrix[(i*4)+1][(j*4)+3] = pixel;
+        pixelMatrix[(i*4)+2][(j*4)] = pixel;
+        pixelMatrix[(i*4)+2][(j*4)+1] = pixel;
+        pixelMatrix[(i*4)+2][(j*4)+2] = pixel;
+        pixelMatrix[(i*4)+2][(j*4)+3] = pixel;
+        pixelMatrix[(i*4)+3][(j*4)] = pixel;
+        pixelMatrix[(i*4)+3][(j*4)+1] = pixel;
+        pixelMatrix[(i*4)+3][(j*4)+2] = pixel;
+        pixelMatrix[(i*4)+3][(j*4)+3] = pixel;
+      }
+    }
+
+    for (int i = 0; i < rows/4; i++) {
+      for(int j = 0; j < columns/4; j++) {
+        pixelMatrixRedux[i][j] = pixelMatrix[i*16][j*16];
+      }
+    }
+
+    for (int i = 0; i < rows/4; i++) {    
+      for(int j = 0; j < columns/4; j++) {
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].red);
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].green);
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].blue);
+      }
+    }
+  } else if (zoomQtd == 8) {
+
+    printf("Digite o nome da sua nova imagem: \n");
+    scanf("%s", name);
+    char imagePath[50] = {"img/"}; // Origem da Imagem.
+    strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+    strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+    newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+
+    fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+    fprintf(newFile, "%i %i\n", columns / 8, rows / 8);
+    fprintf(newFile, "%i\n", colorVar);
+
+    RGB pixelMatrix[rows*8][columns*8];
+    RGB pixelMatrixRedux[rows][columns];
+
+    for (int i = 0; i < rows; i++) {
+      for(int j = 0; j < columns; j++) {
+        RGB pixel = pixelVector[i * columns + j];
+        pixelMatrix[(i*8)][(j*8)] = pixel;
+        pixelMatrix[(i*8)][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+1][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+2][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+3][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+4][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+5][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+6][(j*8)+7] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+1] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+2] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+3] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+4] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+5] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+6] = pixel;
+        pixelMatrix[(i*8)+7][(j*8)+7] = pixel;
+      }
+    }
+
+    for (int i = 0; i < rows/8; i++) {
+      for(int j = 0; j < columns/8; j++) {
+        pixelMatrixRedux[i][j] = pixelMatrix[i*64][j*64];
+      }
+    }
+
+    for (int i = 0; i < rows/8; i++) {    
+      for(int j = 0; j < columns/8; j++) {
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].red);
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].green);
+        fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].blue);
+      }
+    }
+
+  } else {
+    printf("Por favor, digite um valor válido (2, 4 ou 8).\n");
+    red(name, imgType, columns, rows, colorVar, pixelQtd, pixelVector);
+  }
+
+  fclose(newFile);
+  free(pixelVector);
+}
+
+void rot(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
+  int rotQtd = 0;
+  printf("Digite o grau de rotação desejado (90, 180 ou 270 graus): ");
+  scanf("%i", &rotQtd);
+
+  if (rotQtd == 90) {
+
+    printf("Digite o nome da sua nova imagem: \n");
+    scanf("%s", name);
+    char imagePath[50] = {"img/"}; // Origem da Imagem.
+    strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+    strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+    newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+
+    fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+    fprintf(newFile, "%i %i\n", columns, rows);
+    fprintf(newFile, "%i\n", colorVar);
+
+    RGB pixelMatrix[rows][columns];
+    
+    int aux = 0;
+    for (int i = rows; i > 0; i--) {  
+      for(int j = 0; j < columns; j++) {
+        pixelMatrix[j][i] = pixelVector[aux];
+        aux++;
+      }
+    }
+
+    for (int i = 0; i < rows; i++) {    
+      for(int j = 0; j < columns; j++) {
+        fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
+        fprintf(newFile, "%i\n", pixelMatrix[i][j].green);
+        fprintf(newFile, "%i\n", pixelMatrix[i][j].blue);
+      }
+    }
+
+  } else if (rotQtd == 180) {
+
+    printf("Digite o nome da sua nova imagem: \n");
+    scanf("%s", name);
+    char imagePath[50] = {"img/"}; // Origem da Imagem.
+    strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+    strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+    newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+
+    fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+    fprintf(newFile, "%i %i\n", columns, rows);
+    fprintf(newFile, "%i\n", colorVar);
+
+    RGB pixelMatrix[rows][columns];
+    
+    int aux = rows * columns;
+    for (int i = 0; i < rows; i++) {    
+      for(int j = 0; j < columns; j++) {
+        pixelMatrix[i][j] = pixelVector[aux];
+        aux--;
+      }
+    }
+
+    for (int i = 0; i < rows; i++) {    
+      for(int j = 0; j < columns; j++) {
+        fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
+        fprintf(newFile, "%i\n", pixelMatrix[i][j].green);
+        fprintf(newFile, "%i\n", pixelMatrix[i][j].blue);
+      }
+    }
+
+  } else if (rotQtd == 270) {
+
+    printf("Digite o nome da sua nova imagem: \n");
+    scanf("%s", name);
+    char imagePath[50] = {"img/"}; // Origem da Imagem.
+    strcat(imagePath, name); // Junta o caminho com o nome da imagem.
+    strcat(imagePath, ".ppm"); // Adiciona a extensão pmm após o nome da imagem.
+    newFile = fopen(imagePath, "w"); // Abre o Arquivo.
+
+    fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
+    fprintf(newFile, "%i %i\n", columns, rows);
+    fprintf(newFile, "%i\n", colorVar);
+
+    RGB pixelMatrix[rows][columns];
+    
+    int aux = 0;
+    for (int i = 0; i < rows; i++) {    
+      for(int j = 0; j < columns; j++) {
+        pixelMatrix[i][j] = pixelVector[aux];
+        aux++;
+      }
+    }
+
+    for (int i = rows; i > 0; i--) {  
+      for(int j = 0; j < columns; j++) {
+        fprintf(newFile, "%i\n", pixelMatrix[j][i].red);
+        fprintf(newFile, "%i\n", pixelMatrix[j][i].green);
+        fprintf(newFile, "%i\n", pixelMatrix[j][i].blue);
+      }
+    }
+
+  } else {
+    printf("Por favor, digite um valor válido (90, 180 ou 270).\n");
+    rot(name, imgType, columns, rows, colorVar, pixelQtd, pixelVector);
+  }
+
+  fclose(newFile);
+  free(pixelVector);
+}
+
 void createImg(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
   printf("Digite o nome da sua nova imagem: \n");
   scanf("%s", name);
@@ -300,28 +635,31 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
   
   if (answer1[0] == 's') {
     printf("Lista de comandos:\n");
-    printf("'thr': Fará a binarização da imagem usando thresholding.\n'gsc': Transformará a imagem em escala de cinza.\n‘blu’: Executará o blurring.\n‘sha’: Executará o sharpening.\n'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.\n'amp’: Ampliará a imagem, de acordo com o zoom escolhido.\n‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.\nDigite a alteração que deseja executar: ");
+    printf("'thr': Fará a binarização da imagem usando thresholding.\n'gsc': Transformará a imagem em escala de cinza.\n‘blu’: Executará o blurring.\n‘sha’: Executará o sharpening.\n'bdt': Fará a detecção de bordas da imagem.\n'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.\n'amp’: Ampliará a imagem, de acordo com o zoom escolhido.\n‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.\nDigite a alteração que deseja executar: ");
     scanf("%s", answer2);
-    if(answer2[0] == 't') {
+    if(answer2[0] == 't' && answer2[1] == 'h' && answer2[2] == 'r') {
       thr(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
-    } else if (answer2[0] == 'b') {
+    } else if (answer2[0] == 'b' && answer2[1] == 'l' && answer2[2] == 'u') {
       blu(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
-    } else if (answer2[0] == 's') {
+    } else if (answer2[0] == 's' && answer2[1] == 'h' && answer2[2] == 'a') {
       sha(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
-    } else if (answer2[0] == 'r' && answer2[1] == 'o') {
-      //rot();
-    } else if (answer2[0] == 'a') {
+    } else if (answer2[0] == 'b' && answer2[1] == 'd' && answer2[2] == 't') {
+      bdt(&pixelQtd, pixelVector);
+      createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
+    } else if (answer2[0] == 'r' && answer2[1] == 'o' && answer2[2] == 't') {
+      rot(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
+    } else if (answer2[0] == 'a' && answer2[1] == 'm' && answer2[2] == 'p') {
       amp(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
-    } else if (answer2[0] == 'r' && answer2[1] == 'e') {
-      //red();
+    } else if (answer2[0] == 'r' && answer2[1] == 'e' && answer2[2] == 'd') {
+      red(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'g' && answer2[1] == 's' && answer2[2] == 'c') {
       gsc(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
-    }
-  } else {
+    } else {
     exit(0);
+    }
   }
 }

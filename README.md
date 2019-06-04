@@ -69,6 +69,7 @@ O programa encerrará caso ocorra uma das três seguintes situações:
 ![Nitidez](ex/gifs/sha.gif)
 
 ### Detecção das bordas da imagem:
+![Detecção de bordas](ex/gifs/bdt.gif)
 
 ### Aumento do tamanho da imagem:
 ![Amp](ex/amp_2.png)

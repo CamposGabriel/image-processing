@@ -19,9 +19,14 @@ O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais op
 - [Redução da imagem](https://github.com/CamposGabriel/image-processing#Redução-da-imagem)
 
 
-### OBS:
+## Como utilizar o programa:
 - Antes de iniciar o programa, certifique-se de que a memória stack está como ilimitada usando o comando:
 - ulimit -s unlimited
+
+- Faça o download desse projeto;
+- Abra o terminal (bash) na pasta do arquivo principal;
+- Abra o executável digitando "bin/main".
+- Siga os passos do programa.
 
 ## Os comandos (da linha de comando) serão:
 - 'thr': Fará a binarização da imagem usando thresholding.

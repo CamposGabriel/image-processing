@@ -493,10 +493,6 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
   
   printf("Deseja fazer alguma alteração na imagem selecionada? [S]/[N]\n");
   scanf("%s", answer1);
-
-  int shaVector[] = {0, -1, 0, -1, 5, -1, 0, -1, 0};
-
-  int bdtVector[] = {-1, -1, -1, -1, 8, -1, -1, -1, -1};
   
   if (answer1[0] == 's') {
     printf("Lista de comandos:\n");

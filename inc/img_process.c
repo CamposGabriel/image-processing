@@ -167,27 +167,18 @@ void amp(char name[], char imgType[], int columns, int rows, int colorVar, int p
 
     RGB pixelMatrix[rows*4][columns*4];
 
-    for (int i = 0; i < rows; i++) {
-      for(int j = 0; j < columns; j++) {
-        RGB pixel = pixelVector[i * columns + j];
-        pixelMatrix[(i*4)][(j*4)] = pixel;
-        pixelMatrix[(i*4)][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)][(j*4)+3] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)+3] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)+3] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)+3] = pixel;
+    for (int n = 0; n < 4; n++) {
+      for (int i = 0; i < rows; i++) {
+        for(int j = 0; j < columns; j++) {
+          RGB pixel = pixelVector[i * columns + j];
+          pixelMatrix[(i*4)+n][(j*4)] = pixel;
+          pixelMatrix[(i*4)+n][(j*4)+1] = pixel;
+          pixelMatrix[(i*4)+n][(j*4)+2] = pixel;
+          pixelMatrix[(i*4)+n][(j*4)+3] = pixel;
+        }
       }
     }
+    
     for (int i = 0; i < (rows * 4); i++) {    
       for(int j = 0; j < (columns * 4); j++) {
         fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
@@ -208,76 +199,23 @@ void amp(char name[], char imgType[], int columns, int rows, int colorVar, int p
     fprintf(newFile, "%i\n", colorVar);
 
     RGB pixelMatrix[rows*8][columns*8];
-
-    for (int i = 0; i < rows; i++) {
-      for(int j = 0; j < columns; j++) {
-        RGB pixel = pixelVector[i * columns + j];
-        pixelMatrix[(i*8)][(j*8)] = pixel;
-        pixelMatrix[(i*8)][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+7] = pixel;
+    
+    for (int n = 0; n < 8; n++) {
+      for (int i = 0; i < rows; i++) {
+        for(int j = 0; j < columns; j++) {
+          RGB pixel = pixelVector[i * columns + j];
+          pixelMatrix[(i*8)+n][(j*8)] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+1] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+2] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+3] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+4] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+5] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+6] = pixel;
+          pixelMatrix[(i*8)+n][(j*8)+7] = pixel;
+        }
       }
     }
+
     for (int i = 0; i < (rows * 8); i++) {    
       for(int j = 0; j < (columns * 8); j++) {
         fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
@@ -311,22 +249,20 @@ void red(char name[], char imgType[], int columns, int rows, int colorVar, int p
     fprintf(newFile, "%i %i\n", columns / 2, rows / 2);
     fprintf(newFile, "%i\n", colorVar);
 
-    RGB pixelMatrix[rows*2][columns*2];
-    RGB pixelMatrixRedux[rows][columns];
+    RGB pixelMatrix[rows][columns];
+    RGB pixelMatrixRedux[rows/2][columns/2];
 
-    for (int i = 0; i < rows; i++) {
+    int aux = 0;
+    for (int i = 0; i < rows; i++) {    
       for(int j = 0; j < columns; j++) {
-        RGB pixel = pixelVector[i * columns + j];
-        pixelMatrix[(i*2)][(j*2)] = pixel;
-        pixelMatrix[(i*2)][(j*2)+1] = pixel;
-        pixelMatrix[(i*2)+1][(j*2)] = pixel;
-        pixelMatrix[(i*2)+1][(j*2)+1] = pixel;
+        pixelMatrix[i][j] = pixelVector[aux];
+        aux++;
       }
     }
 
     for (int i = 0; i < rows/2; i++) {
       for(int j = 0; j < columns/2; j++) {
-        pixelMatrixRedux[i][j] = pixelMatrix[i*4][j*4];
+        pixelMatrixRedux[i][j] = pixelMatrix[i*2][j*2];
       }
     }
 
@@ -350,35 +286,21 @@ void red(char name[], char imgType[], int columns, int rows, int colorVar, int p
     fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
     fprintf(newFile, "%i %i\n", columns / 4, rows / 4);
     fprintf(newFile, "%i\n", colorVar);
+    
+    RGB pixelMatrix[rows][columns];
+    RGB pixelMatrixRedux[rows/4][columns/4];
 
-    RGB pixelMatrix[rows*4][columns*4];
-    RGB pixelMatrixRedux[rows][columns];
-
-    for (int i = 0; i < rows; i++) {
+    int aux = 0;
+    for (int i = 0; i < rows; i++) {    
       for(int j = 0; j < columns; j++) {
-        RGB pixel = pixelVector[i * columns + j];
-        pixelMatrix[(i*4)][(j*4)] = pixel;
-        pixelMatrix[(i*4)][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)][(j*4)+3] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)+1][(j*4)+3] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)+2][(j*4)+3] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)+1] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)+2] = pixel;
-        pixelMatrix[(i*4)+3][(j*4)+3] = pixel;
+        pixelMatrix[i][j] = pixelVector[aux];
+        aux++;
       }
     }
 
     for (int i = 0; i < rows/4; i++) {
       for(int j = 0; j < columns/4; j++) {
-        pixelMatrixRedux[i][j] = pixelMatrix[i*16][j*16];
+        pixelMatrixRedux[i][j] = pixelMatrix[i*4][j*4];
       }
     }
 
@@ -389,6 +311,7 @@ void red(char name[], char imgType[], int columns, int rows, int colorVar, int p
         fprintf(newFile, "%i\n", pixelMatrixRedux[i][j].blue);
       }
     }
+
   } else if (zoomQtd == 8) {
 
     printf("Digite o nome da sua nova imagem: \n");
@@ -402,82 +325,20 @@ void red(char name[], char imgType[], int columns, int rows, int colorVar, int p
     fprintf(newFile, "%i %i\n", columns / 8, rows / 8);
     fprintf(newFile, "%i\n", colorVar);
 
-    RGB pixelMatrix[rows*8][columns*8];
-    RGB pixelMatrixRedux[rows][columns];
+    RGB pixelMatrix[rows][columns];
+    RGB pixelMatrixRedux[rows/8][columns/8];
 
-    for (int i = 0; i < rows; i++) {
+    int aux = 0;
+    for (int i = 0; i < rows; i++) {    
       for(int j = 0; j < columns; j++) {
-        RGB pixel = pixelVector[i * columns + j];
-        pixelMatrix[(i*8)][(j*8)] = pixel;
-        pixelMatrix[(i*8)][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+1][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+2][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+3][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+4][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+5][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+6][(j*8)+7] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+1] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+2] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+3] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+4] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+5] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+6] = pixel;
-        pixelMatrix[(i*8)+7][(j*8)+7] = pixel;
+        pixelMatrix[i][j] = pixelVector[aux];
+        aux++;
       }
     }
 
     for (int i = 0; i < rows/8; i++) {
       for(int j = 0; j < columns/8; j++) {
-        pixelMatrixRedux[i][j] = pixelMatrix[i*64][j*64];
+        pixelMatrixRedux[i][j] = pixelMatrix[i*8][j*8];
       }
     }
 
@@ -513,24 +374,24 @@ void rot(char name[], char imgType[], int columns, int rows, int colorVar, int p
     newFile = fopen(imagePath, "w"); // Abre o Arquivo.
 
     fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
-    fprintf(newFile, "%i %i\n", columns, rows);
+    fprintf(newFile, "%i %i\n", rows, columns);
     fprintf(newFile, "%i\n", colorVar);
 
     RGB pixelMatrix[rows][columns];
     
-    int aux = 0;
-    for (int i = rows; i > 0; i--) {  
+    int aux = pixelQtd;
+    for (int i = 0; i < rows; i++) {    
       for(int j = 0; j < columns; j++) {
-        pixelMatrix[j][i] = pixelVector[aux];
-        aux++;
+        pixelMatrix[i][j] = pixelVector[aux];
+        aux--;
       }
     }
 
-    for (int i = 0; i < rows; i++) {    
-      for(int j = 0; j < columns; j++) {
-        fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
-        fprintf(newFile, "%i\n", pixelMatrix[i][j].green);
-        fprintf(newFile, "%i\n", pixelMatrix[i][j].blue);
+    for (int i = columns; i > 0; i--) {  
+      for(int j = 0; j < rows; j++) {
+        fprintf(newFile, "%i\n", pixelMatrix[j][i].red);
+        fprintf(newFile, "%i\n", pixelMatrix[j][i].green);
+        fprintf(newFile, "%i\n", pixelMatrix[j][i].blue);
       }
     }
 
@@ -551,14 +412,14 @@ void rot(char name[], char imgType[], int columns, int rows, int colorVar, int p
     
     int aux = rows * columns;
     for (int i = 0; i < rows; i++) {    
-      for(int j = 0; j < columns; j++) {
+      for (int j = 0; j < columns; j++) {
         pixelMatrix[i][j] = pixelVector[aux];
         aux--;
       }
     }
 
     for (int i = 0; i < rows; i++) {    
-      for(int j = 0; j < columns; j++) {
+      for (int j = 0; j < columns; j++) {
         fprintf(newFile, "%i\n", pixelMatrix[i][j].red);
         fprintf(newFile, "%i\n", pixelMatrix[i][j].green);
         fprintf(newFile, "%i\n", pixelMatrix[i][j].blue);
@@ -575,7 +436,7 @@ void rot(char name[], char imgType[], int columns, int rows, int colorVar, int p
     newFile = fopen(imagePath, "w"); // Abre o Arquivo.
 
     fprintf(newFile, "%c%c\n", imgType[0], imgType[1]);
-    fprintf(newFile, "%i %i\n", columns, rows);
+    fprintf(newFile, "%i %i\n", rows, columns);
     fprintf(newFile, "%i\n", colorVar);
 
     RGB pixelMatrix[rows][columns];
@@ -588,8 +449,8 @@ void rot(char name[], char imgType[], int columns, int rows, int colorVar, int p
       }
     }
 
-    for (int i = rows; i > 0; i--) {  
-      for(int j = 0; j < columns; j++) {
+    for (int i = columns; i > 0; i--) {  
+      for(int j = 0; j < rows; j++) {
         fprintf(newFile, "%i\n", pixelMatrix[j][i].red);
         fprintf(newFile, "%i\n", pixelMatrix[j][i].green);
         fprintf(newFile, "%i\n", pixelMatrix[j][i].blue);
@@ -632,6 +493,10 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
   
   printf("Deseja fazer alguma alteração na imagem selecionada? [S]/[N]\n");
   scanf("%s", answer1);
+
+  int shaVector[] = {0, -1, 0, -1, 5, -1, 0, -1, 0};
+
+  int bdtVector[] = {-1, -1, -1, -1, 8, -1, -1, -1, -1};
   
   if (answer1[0] == 's') {
     printf("Lista de comandos:\n");
@@ -647,7 +512,7 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
       sha(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'b' && answer2[1] == 'd' && answer2[2] == 't') {
-      bdt(&pixelQtd, pixelVector);
+       bdt(&pixelQtd, pixelVector);
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'r' && answer2[1] == 'o' && answer2[2] == 't') {
       rot(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);

@@ -1,8 +1,7 @@
 #include "img_process.h"
 
-
 // Função principal.
-int main() {
+int main(int argc, char **argv) {
   char name[20]; // Vetor que armazena o nome do arquivo.
   char newName[20]; // Vetor que armazena o nome do novo arquivo.
   char imgType[3]; // Vetor que armazena o tipo da imagem.

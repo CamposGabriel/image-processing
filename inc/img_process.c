@@ -63,9 +63,9 @@ void gsc(int *pixelQtdVal, RGB pixelVector[]) {
 
 void blu(int *pixelQtdVal, RGB pixelVector[]) {
   for (int i = 0; i < *pixelQtdVal; i++) {
-    pixelVector[i].red = (pixelVector[i].red + pixelVector[i+1].red + pixelVector[i+2].red + pixelVector[i+3].red + pixelVector[i+4].red + pixelVector[i+5].red) / 6;
-    pixelVector[i].green = (pixelVector[i].green + pixelVector[i+1].green + pixelVector[i+2].green + pixelVector[i+3].green + pixelVector[i+4].green + pixelVector[i+5].green) / 6;
-    pixelVector[i].blue = (pixelVector[i].blue + pixelVector[i+1].blue + pixelVector[i+2].blue + pixelVector[i+3].blue + pixelVector[i+4].blue + pixelVector[i+5].blue) / 6;
+    pixelVector[i].red = (pixelVector[i].red + pixelVector[i+1].red + pixelVector[i+2].red + pixelVector[i+3].red + pixelVector[i+4].red + pixelVector[i+5].red + pixelVector[i+6].red + pixelVector[i+7].red + pixelVector[i+8].red) / 9;
+    pixelVector[i].green = (pixelVector[i].green + pixelVector[i+1].green + pixelVector[i+2].green + pixelVector[i+3].green + pixelVector[i+4].green + pixelVector[i+5].green + pixelVector[i+6].green + pixelVector[i+7].green + pixelVector[i+8].green) / 9;
+    pixelVector[i].blue = (pixelVector[i].blue + pixelVector[i+1].blue + pixelVector[i+2].blue + pixelVector[i+3].blue + pixelVector[i+4].blue + pixelVector[i+5].blue + pixelVector[i+6].blue + pixelVector[i+7].blue + pixelVector[i+8].blue) / 9;
   }
 }
 
@@ -493,6 +493,10 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
   
   printf("Deseja fazer alguma alteração na imagem selecionada? [S]/[N]\n");
   scanf("%s", answer1);
+
+  int shaVector[] = {0, -1, 0, -1, 5, -1, 0, -1, 0};
+
+  int bdtVector[] = {-1, -1, -1, -1, 8, -1, -1, -1, -1};
   
   if (answer1[0] == 's') {
     printf("Lista de comandos:\n");

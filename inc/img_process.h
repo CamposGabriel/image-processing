@@ -13,20 +13,8 @@ void openFile(char name[]);
 // Coleta os dados de um arquivo de imagem, dado o nome, localizado na pasta "img" dentro da pasta do projeto.
 RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal, int *pixelQtdVal);
 
-// Realiza a binarização da imagem utilizando a técnica threshold.
-void thr(int *pixelQtdVal, RGB pixelVector[]);
-
-// Transforma a imagem em uma escala de cinza.
-void gsc(int *pixelQtdVal, RGB pixelVector[]);
-
-// Realiza o borramento da imagem.
-void blu(int *pixelQtdVal, RGB pixelVector[]);
-
-// Realiza o afiamento das bordas da imagem.
-void sha(int *pixelQtdVal, RGB pixelVector[]);
-
-// Detecta as bordas da imagem.
-void bdt(int *pixelQtdVal, RGB pixelVector[]);
+// Aplica todos os filtros de acordo com o vetor.
+void filters(int *pixelQtdVal, RGB pixelVector[], int filterVector[], int blu, char thrOrGsc);
 
 // Amplia a imagem.
 void amp(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]);

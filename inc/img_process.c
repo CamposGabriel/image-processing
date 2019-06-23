@@ -39,82 +39,54 @@ RGB* readFileData(char imgType[], int *columnVal, int *rowVal, int *colorVarVal,
   return pixelVector;
 }
 
-void thr(int *pixelQtdVal, RGB pixelVector[]) {
-  for (int i = 0; i < *pixelQtdVal; i++) {
-    if (pixelVector[i].red < 165 && pixelVector[i].green < 165 && pixelVector[i].blue < 165) {
-      pixelVector[i].red = 0;
-      pixelVector[i].green = 0;
-      pixelVector[i].blue = 0;
-    } else {
-      pixelVector[i].red = 255;
-      pixelVector[i].green = 255;
-      pixelVector[i].blue = 255;
+void filters(int *pixelQtdVal, RGB pixelVector[], int filterVector[], int blu, char thrOrGsc) {
+
+  if (thrOrGsc == 't') {
+    for (int i = 0; i < *pixelQtdVal; i++) {
+      if (pixelVector[i].red < 165 && pixelVector[i].green < 165 && pixelVector[i].blue < 165) {
+        pixelVector[i].red = 0;
+        pixelVector[i].green = 0;
+        pixelVector[i].blue = 0;
+      } else {
+        pixelVector[i].red = 255;
+        pixelVector[i].green = 255;
+        pixelVector[i].blue = 255;
+      }
+    }
+  } else if (thrOrGsc == 'g') {
+    for (int i = 0; i < *pixelQtdVal; i++) {
+      pixelVector[i].red = (pixelVector[i].red * 0.3) + (pixelVector[i].green * 0.59) + (pixelVector[i].blue * 0.11);
+      pixelVector[i].green = pixelVector[i].red;
+      pixelVector[i].blue = pixelVector[i].red;
+    }
+  } else {
+    for (int i = 0; i < *pixelQtdVal; i++) {
+      pixelVector[i].red = ((pixelVector[i].red * filterVector[0]) + (pixelVector[i+1].red * filterVector[1]) + (pixelVector[i+2].red * filterVector[2]) + (pixelVector[i+3].red * filterVector[3]) + (pixelVector[i+4].red * filterVector[4]) + (pixelVector[i+5].red * filterVector[5]) + (pixelVector[i+6].red * filterVector[6]) + (pixelVector[i+7].red * filterVector[7]) + (pixelVector[i+8].red * filterVector[8])) / blu;
+      pixelVector[i].green = ((pixelVector[i].green * filterVector[0]) + (pixelVector[i+1].green * filterVector[1]) + (pixelVector[i+2].green * filterVector[2]) + (pixelVector[i+3].green * filterVector[3]) + (pixelVector[i+4].green * filterVector[4]) + (pixelVector[i+5].green * filterVector[5]) + (pixelVector[i+6].green * filterVector[6]) + (pixelVector[i+7].green * filterVector[7]) + (pixelVector[i+8].green * filterVector[8])) / blu;
+      pixelVector[i].blue = ((pixelVector[i].blue * filterVector[0]) + (pixelVector[i+1].blue * filterVector[1]) + (pixelVector[i+2].blue * filterVector[2]) + (pixelVector[i+3].blue * filterVector[3]) + (pixelVector[i+4].blue * filterVector[4]) + (pixelVector[i+5].blue * filterVector[5]) + (pixelVector[i+6].blue * filterVector[6]) + (pixelVector[i+7].blue * filterVector[7]) + (pixelVector[i+8].blue * filterVector[8])) / blu;
+    }
+    
+    if (blu != 9) {
+      for (int i = 0; i < *pixelQtdVal; i++) {
+        if (pixelVector[i].red > 255) {
+          pixelVector[i].red = 255;
+        } else if (pixelVector[i].red < 0) {
+          pixelVector[i].red = 0;
+        }
+        if (pixelVector[i].green > 255) {
+          pixelVector[i].green = 255;
+        } else if (pixelVector[i].green < 0) {
+          pixelVector[i].green = 0;
+        }
+        if (pixelVector[i].blue > 255) {
+          pixelVector[i].blue = 255;
+        } else if (pixelVector[i].blue < 0) {
+          pixelVector[i].blue = 0;
+        }
+      }
     }
   }
-}
 
-void gsc(int *pixelQtdVal, RGB pixelVector[]) {
-  for (int i = 0; i < *pixelQtdVal; i++) {
-    pixelVector[i].red = (pixelVector[i].red * 0.3) + (pixelVector[i].green * 0.59) + (pixelVector[i].blue * 0.11);
-    pixelVector[i].green = pixelVector[i].red;
-    pixelVector[i].blue = pixelVector[i].red;
-  }
-}
-
-void blu(int *pixelQtdVal, RGB pixelVector[]) {
-  for (int i = 0; i < *pixelQtdVal; i++) {
-    pixelVector[i].red = (pixelVector[i].red + pixelVector[i+1].red + pixelVector[i+2].red + pixelVector[i+3].red + pixelVector[i+4].red + pixelVector[i+5].red + pixelVector[i+6].red + pixelVector[i+7].red + pixelVector[i+8].red) / 9;
-    pixelVector[i].green = (pixelVector[i].green + pixelVector[i+1].green + pixelVector[i+2].green + pixelVector[i+3].green + pixelVector[i+4].green + pixelVector[i+5].green + pixelVector[i+6].green + pixelVector[i+7].green + pixelVector[i+8].green) / 9;
-    pixelVector[i].blue = (pixelVector[i].blue + pixelVector[i+1].blue + pixelVector[i+2].blue + pixelVector[i+3].blue + pixelVector[i+4].blue + pixelVector[i+5].blue + pixelVector[i+6].blue + pixelVector[i+7].blue + pixelVector[i+8].blue) / 9;
-  }
-}
-
-void sha(int *pixelQtdVal, RGB pixelVector[]) {
-  for (int i = 0; i < *pixelQtdVal; i++) {
-    pixelVector[i].red = (pixelVector[i].red * 0) + (pixelVector[i+1].red * -1) + (pixelVector[i+2].red * 0) + (pixelVector[i+3].red * -1) + (pixelVector[i+4].red * 5) + (pixelVector[i+5].red * -1) + (pixelVector[i+6].red * 0) + (pixelVector[i+7].red * -1) + (pixelVector[i+8].red * 0);
-    pixelVector[i].green = (pixelVector[i].green * 0) + (pixelVector[i+1].green * -1) + (pixelVector[i+2].green * 0) + (pixelVector[i+3].green * -1) + (pixelVector[i+4].green * 5) + (pixelVector[i+5].green * -1) + (pixelVector[i+6].green * 0) + (pixelVector[i+7].green * -1) + (pixelVector[i+8].green * 0);
-    pixelVector[i].blue = (pixelVector[i].blue * 0) + (pixelVector[i+1].blue * -1) + (pixelVector[i+2].blue * 0) + (pixelVector[i+3].blue * -1) + (pixelVector[i+4].blue * 5) + (pixelVector[i+5].blue * -1) + (pixelVector[i+6].blue * 0) + (pixelVector[i+7].blue * -1) + (pixelVector[i+8].blue * 0);
-
-    if (pixelVector[i].red > 255) {
-      pixelVector[i].red = 255;
-    } else if (pixelVector[i].red < 0) {
-      pixelVector[i].red = 0;
-    }
-    if (pixelVector[i].green > 255) {
-      pixelVector[i].green = 255;
-    } else if (pixelVector[i].green < 0) {
-      pixelVector[i].green = 0;
-    }
-    if (pixelVector[i].blue > 255) {
-      pixelVector[i].blue = 255;
-    } else if (pixelVector[i].blue < 0) {
-      pixelVector[i].blue = 0;
-    }
-  }
-}
-
-void bdt(int *pixelQtdVal, RGB pixelVector[]) {
-  for (int i = 0; i < *pixelQtdVal; i++) {
-    pixelVector[i].red = (pixelVector[i].red * -1) + (pixelVector[i+1].red * -1) + (pixelVector[i+2].red * -1) + (pixelVector[i+3].red * -1) + (pixelVector[i+4].red * 8) + (pixelVector[i+5].red * -1) + (pixelVector[i+6].red * -1) + (pixelVector[i+7].red * -1) + (pixelVector[i+8].red * -1);
-    pixelVector[i].green = (pixelVector[i].green * -1) + (pixelVector[i+1].green * -1) + (pixelVector[i+2].green * -1) + (pixelVector[i+3].green * -1) + (pixelVector[i+4].green * 8) + (pixelVector[i+5].green * -1) + (pixelVector[i+6].green * -1) + (pixelVector[i+7].green * -1) + (pixelVector[i+8].green * -1);
-    pixelVector[i].blue = (pixelVector[i].blue * -1) + (pixelVector[i+1].blue * -1) + (pixelVector[i+2].blue * -1) + (pixelVector[i+3].blue * -1) + (pixelVector[i+4].blue * 8) + (pixelVector[i+5].blue * -1) + (pixelVector[i+6].blue * -1) + (pixelVector[i+7].blue * -1) + (pixelVector[i+8].blue * -1);
-
-    if (pixelVector[i].red > 255) {
-      pixelVector[i].red = 255;
-    } else if (pixelVector[i].red < 0) {
-      pixelVector[i].red = 0;
-    }
-    if (pixelVector[i].green > 255) {
-      pixelVector[i].green = 255;
-    } else if (pixelVector[i].green < 0) {
-      pixelVector[i].green = 0;
-    }
-    if (pixelVector[i].blue > 255) {
-      pixelVector[i].blue = 255;
-    } else if (pixelVector[i].blue < 0) {
-      pixelVector[i].blue = 0;
-    }
-  }
 }
 
 void amp(char name[], char imgType[], int columns, int rows, int colorVar, int pixelQtd, RGB pixelVector[]) {
@@ -494,25 +466,27 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
   printf("Deseja fazer alguma alteração na imagem selecionada? [S]/[N]\n");
   scanf("%s", answer1);
 
-  int shaVector[] = {0, -1, 0, -1, 5, -1, 0, -1, 0};
+  int shaVector[] = {0, -1, 0, -1, 5, -1, 0, -1, 0}; // Vetor do sharpening
 
-  int bdtVector[] = {-1, -1, -1, -1, 8, -1, -1, -1, -1};
+  int bdtVector[] = {-1, -1, -1, -1, 8, -1, -1, -1, -1}; // Vetor da detecção de bordas
+
+  int stdVector[] = {1, 1, 1, 1, 1, 1, 1, 1, 1}; // Vetor padrão
   
   if (answer1[0] == 's') {
     printf("Lista de comandos:\n");
     printf("'thr': Fará a binarização da imagem usando thresholding.\n'gsc': Transformará a imagem em escala de cinza.\n‘blu’: Executará o blurring.\n‘sha’: Executará o sharpening.\n'bdt': Fará a detecção de bordas da imagem.\n'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.\n'amp’: Ampliará a imagem, de acordo com o zoom escolhido.\n‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.\nDigite a alteração que deseja executar: ");
     scanf("%s", answer2);
     if(answer2[0] == 't' && answer2[1] == 'h' && answer2[2] == 'r') {
-      thr(&pixelQtd, pixelVector);
+      filters(&pixelQtd, pixelVector, stdVector, 1, 't');
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'b' && answer2[1] == 'l' && answer2[2] == 'u') {
-      blu(&pixelQtd, pixelVector);
+      filters(&pixelQtd, pixelVector, stdVector, 9, 'u');
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 's' && answer2[1] == 'h' && answer2[2] == 'a') {
-      sha(&pixelQtd, pixelVector);
+      filters(&pixelQtd, pixelVector, shaVector, 1, 'u');
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'b' && answer2[1] == 'd' && answer2[2] == 't') {
-       bdt(&pixelQtd, pixelVector);
+      filters(&pixelQtd, pixelVector, bdtVector, 1 , 'u');
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'r' && answer2[1] == 'o' && answer2[2] == 't') {
       rot(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
@@ -521,7 +495,7 @@ void actions(char name[], char newName[], char imgType[], int columns, int rows,
     } else if (answer2[0] == 'r' && answer2[1] == 'e' && answer2[2] == 'd') {
       red(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else if (answer2[0] == 'g' && answer2[1] == 's' && answer2[2] == 'c') {
-      gsc(&pixelQtd, pixelVector);
+      filters(&pixelQtd, pixelVector, stdVector, 1, 'g');
       createImg(newName, imgType, columns, rows, *colorVarVal, pixelQtd, pixelVector);
     } else {
     exit(0);

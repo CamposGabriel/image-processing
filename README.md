@@ -1,84 +1,43 @@
-# Processamento de imagem usando a linguagem C
-Esse é um programa desenvolvido para a disciplina de Introdução as Técnicas de Programação.
+# Image processing program in C.
+This is a program develop for the Introduction of Programing Techniques lecture from UFRN.
 
-## Sobre o programa
-O programa lerá um arquivo de imagem no formato PPM e realizará uma ou mais operações de transformação na imagem, de acordo com o que o usuário escolher.
+## About
+The program will read a PPM image file and do one or more transformations on the image, acording with the user choice.
 
-## Sumário:
-- [Comandos](https://github.com/CamposGabriel/image-processing#os-comandos-da-linha-de-comando-serão)
-- [Término do programa](https://github.com/CamposGabriel/image-processing#Término-do-programa)
-- [Extras](https://github.com/CamposGabriel/image-processing#Extras)
-- [Binarização da Imagem](https://github.com/CamposGabriel/image-processing#binarização-da-imagem)
-### Exemplos:
-- [Escala de Cinza](https://github.com/CamposGabriel/image-processing#Escala-de-cinza)
-- [Borramento da Imagem](https://github.com/CamposGabriel/image-processing#borramento-da-imagem)
-- [Aumento da nitidez da imagem](https://github.com/CamposGabriel/image-processing#aumento-da-nitidez-da-imagem)
-- [Detecção das bordas](https://github.com/CamposGabriel/image-processing#Detecção-das-bordas-da-imagem)
-- [Aumento do tamanho da imagem](https://github.com/CamposGabriel/image-processing#aumento-do-tamanho-da-imagem)
-- [Rotação da imagem](https://github.com/CamposGabriel/image-processing#Rotação-da-imagem)
-- [Redução da imagem](https://github.com/CamposGabriel/image-processing#Redução-da-imagem)
+## Sumary
+- [Commands](https://github.com/CamposGabriel/image-processing#commands)
+- [End of the program](https://github.com/CamposGabriel/image-processing#end-of-the-program)
+- [Extras](https://github.com/CamposGabriel/image-processing#extras)
 
-
-## Como utilizar o programa:
-- Antes de iniciar o programa, certifique-se de que a memória stack está como ilimitada usando o comando:
+## How to use the program properly
+- Before starting the program, mnake sure that your stack memory is unlimited. If not, use the command on terminal:
 - ulimit -s unlimited
 
-- Faça o download desse projeto;
-- Abra o terminal (bash) na pasta do arquivo principal;
-- Abra o executável digitando "bin/main".
-- Siga os passos do programa.
+- Clone this repository;
+- Open the bash terminal in the repository file;
+- Use the command "bin/main" to open the program;
+- Follow the program steps;
 
-## Os comandos (da linha de comando) serão:
-- 'thr': Fará a binarização da imagem usando thresholding.
-- 'gsc': Transformará a imagem em escala de cinza.
-- ‘blu’: Executará o borramento da imagem.
-- ‘sha’: Aumentará a nitidez da imagem.
-- 'bdt': Fará a detecção das bordas da imagem.
-- 'rot': Fará uma rotação da imagem, de acordo com o ângulo escolhido.
-- 'amp’: Ampliará a imagem, de acordo com o zoom escolhido.
-- ‘red’: Reduzirá a imagem, de acordo com o zoom escolhido.
+## Commands
+- 'thr': Will do the image binarization using thresholding technic.
+- 'gsc': Will transform the image into gray scale.
+- ‘blu’: Will blur the image.
+- ‘sha’: Will sharp the image.
+- 'bdt': Will detect the borders of the image.
+- 'rot': Will rotate the image, acording with the chosen angle.
+- 'amp’: Will zoom in the image, acoording with the chosen quantity.
+- ‘red’: Will zoom out the image, acoording with the cosen quantity.
 
-
-### Detalhamento de alguns comandos:
-- Thresholding é um método de substituição de cada pixel de uma imagem por um pixel preto se a itensidade for menor do que uma constante T fixada ou um pixel branco se for maior do que a constante.
-- Blurring é o embaçamento da imagem.
-- Sharpening é o realçamento das bordas e detalhes de uma imagem.
-
-
-## Término do programa:
-O programa encerrará caso ocorra uma das três seguintes situações:
-- A segmentação foi feita completamente.
-- Aconteceu um erro na segmentação da imagem.
-- O usuário interrompeu o programa.
+## End of the program
+The program will end if one of the three following cases happens:
+- 1) The segmentation finish with success;
+- 2) Segmentation error;
+- 3) User interrupt the program;
 
 ## Extras:
 
-### Bibliotecas
-- Biblioteca "img_process.h" criada para auxiliar o projeto.
+### Libraries
+- The "img_process.h" was created to help the project.
 
-### Comandos:
-- Função "actions": Direciona o usuário para a função que faz a alteração desejada.
-
-## Demonstração do projeto: 
-
-### Binarização da imagem:
-![Binarização](ex/gifs/thr.gif)
-
-### Escala de cinza:
-![Escala_de_Cinza](ex/gifs/gsc.gif)
-
-### Borramento da imagem:
-![Borramento](ex/gifs/blu.gif)
-
-### Aumento da nitidez da imagem:
-![Nitidez](ex/gifs/sha.gif)
-
-### Detecção das bordas da imagem:
-![Detecção de bordas](ex/gifs/bdt.gif)
-
-### Aumento do tamanho da imagem:
-![Amp](ex/amp_2.png)
-
-### Rotação da imagem:
-
-### Redução da imagem:
+### Functions
+- The "actions" function was created to make the code cleaner.

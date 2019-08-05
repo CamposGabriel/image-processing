@@ -1,5 +1,4 @@
 # Image processing program in C.
-This is a program develop for the Introduction of Programing Techniques lecture from UFRN.
 
 ## About
 The program will read a PPM image file and do one or more transformations on the image, acording with the user choice.

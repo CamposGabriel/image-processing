@@ -10,11 +10,16 @@ The program will read a PPM image file and do one or more transformations on the
 
 ## How to use the program properly
 - Before starting the program, mnake sure that your stack memory is unlimited. If not, use the command on terminal:
-- ulimit -s unlimited
+
+```bash
+  ulimit -s unlimited
+```
 
 - Clone this repository;
-- Open the bash terminal in the repository file;
-- Use the command "bin/main" to open the program;
+- Open the bash terminal in the repository file and run:
+```bash
+  bin/main
+```
 - Follow the program steps;
 
 ## Commands
